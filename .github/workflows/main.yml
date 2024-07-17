@@ -1,0 +1,34 @@
+def greet(bot_name, person_name):
+    return f"你好 {person_name}，我是 {bot_name}。很高兴见到你！"
+
+def goodbye(bot_name):
+    return f"再见 {bot_name}，希望下次再聊！"
+
+def respond_to_greeting(sentence):
+    # 检测常见的问候语
+    if "你好" in sentence or "您好" in sentence:
+        return True
+    elif "再见" in sentence or "拜拜" in sentence:
+        return False
+    return None
+
+def get_response(sentence, bot_name):
+    response = respond_to_greeting(sentence)
+    if response is True:
+        return greet(bot_name, "朋友")
+    elif response is False:
+        return goodbye(bot_name)
+    else:
+        return "我不太明白你在说什么，你能再说一遍吗？"
+
+# 主程序
+bot_name = "小蓝"
+print(greet(bot_name, "朋友"))
+
+while True:
+    sentence = input("你说：")
+    if sentence == "退出":
+        print("聊天结束。")
+        break
+    response = get_response(sentence, bot_name)
+    print(f"{bot_name}说：{response}")
