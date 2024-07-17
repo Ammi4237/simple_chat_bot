@@ -1,0 +1,24 @@
+name: XiaoLan Daily Routine
+
+on: [push]  # 当有 push 事件时触发此工作流程
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 使用最新版本的 Ubuntu 作为运行环境
+
+    steps:
+    - uses: actions/checkout@v2  # 检出仓库
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # 设置 Python 版本
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # 安装任何需要的包，这里假设没有额外的包需要安装
+
+    - name: Run XiaoLan's daily routine script
+      run: |
+        python path/to/xiaolan_script.py  # 替换为你的 Python 脚本路径
